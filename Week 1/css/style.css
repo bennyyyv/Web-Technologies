@@ -1,0 +1,119 @@
+/* Site-Wide Elements*/
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait */
+
+@media only screen
+
+and (min-device-width: 375px)
+
+and (max-device-width: 667px)
+
+and (-webkit-min-device-pixel-ratio: 2)
+
+and (orientation: portrait) {
+
+}
+
+/* Landscape */
+
+@media only screen
+
+and (min-device-width: 375px)
+
+and (max-device-width: 667px)
+
+and (-webkit-min-device-pixel-ratio: 2)
+
+and (orientation: landscape) {
+
+}
+
+/* ----------- Google Pixel ----------- */
+
+/* Portrait */
+
+@media screen
+
+and (device-width: 360px)
+
+and (device-height: 640px)
+
+and (-webkit-device-pixel-ratio: 3)
+
+and (orientation: portrait) {
+
+}
+
+/* Landscape */
+
+@media screen
+
+and (device-width: 360px)
+
+and (device-height: 640px)
+
+and (-webkit-device-pixel-ratio: 3)
+
+and (orientation: landscape) {
+
+}
+
+html {
+   min-height: 100%;
+   background-image: url(../images/bg.jpg);
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center center;
+}
+
+h1, span {
+  margin: 0;
+  color: black;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+/*Layout Areas*/
+
+.main-container {
+  opacity: 50%;
+  width: 68%;
+  max-width: 18000px;
+  height: 900px;
+  margin: 3em auto;
+  padding: 3em;
+  background-color: #FFF;
+  align-items:center;
+  text-align: center;
+}
+
+p {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: bolder;
+}
+
+/*Layout Pieces*/
+
+
+/*--bottom socials*/
+
+#social-linksbot {
+  display: inline-block;
+  padding: .5em;
+  float: right;
+  background-color: #a6acaf;
+}
+#social-linksbot .social-item {
+  margin: 0 5px;
+}
+#social-linksbot img {
+  width: 20px;
+  height: 20px;
+  opacity: .5;
+}
+#social-linksbot img:hover {
+  opacity: 1;
+}
