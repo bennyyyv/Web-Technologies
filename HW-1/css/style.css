@@ -79,10 +79,35 @@ h1, span {
 /*Layout Areas*/
 
 .main-container {
-  opacity: 50%;
+  opacity: 65%;
   width: 68%;
   max-width: 18000px;
-  height: 900px;
+  height: 100px;
+  margin: 3em auto;
+  padding: 3em;
+  background-color: #FFF;
+  align-items:center;
+  text-align: center;
+}
+
+.first-container {
+  opacity: 65%;
+  width: 68%;
+  max-width: 18000px;
+  height: 200px;
+  margin: 3em auto;
+  padding: 3em;
+  background-color: #FFF;
+  align-items:center;
+  text-align: center;
+}
+
+
+.second-container {
+  opacity: 65%;
+  width: 68%;
+  max-width: 18000px;
+  height: 100px;
   margin: 3em auto;
   padding: 3em;
   background-color: #FFF;
@@ -93,6 +118,7 @@ h1, span {
 p {
   font-family: 'Open Sans Condensed', sans-serif;
   font-weight: bolder;
+  color: black;
 }
 
 /*Layout Pieces*/
@@ -105,6 +131,7 @@ p {
   padding: .5em;
   float: right;
   background-color: #a6acaf;
+  opacity: 50%;
 }
 #social-linksbot .social-item {
   margin: 0 5px;
@@ -112,7 +139,7 @@ p {
 #social-linksbot img {
   width: 20px;
   height: 20px;
-  opacity: .5;
+  opacity: .8;
 }
 #social-linksbot img:hover {
   opacity: 1;
