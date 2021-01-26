@@ -1,0 +1,1 @@
+Initially I struggled super hard on this because, as I said in the last readme, I have forgotten most of the information I learned last semester but, after I had my memory refreshed a little I figured everything out. I am really looking forward to learning more about JavaScript because it is an essential thing to know if you want to get a job in the industry. 
