@@ -66,6 +66,4 @@ function chooseAdventure(choice) {
         document.getElementById("story").innerHTML = "Thanks for playing!";
 
     }
-
-
 }
