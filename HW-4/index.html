@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is HW-4">
+    <meta name="author" content="Ben Vanderbosch">
+    <title>HW-4</title>
+      <link rel="stylesheet" type="text/css" href="./css/style.css">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap" rel="stylesheet">
+   <style>body{background-color: #ffd6a1;}</style>
+    <script src="./script.js"></script>
+  </head>
+
+  <body>
+
+    <img src="./assets/twopaths.png" height="200" width="300" id="mainImage">
+    <br>
+    <br>
+    <h1>A Walk in the Woods</h1>
+
+    <div id="question">
+    <p>You've come across a fork in the trail. Will you go right or left?</p>
+    </div>
+
+    <input type="text" id="choice" value="Right or Left?">
+    <button id="btnSubmit" onclick="getChoice1();">Continue</button>
+
+    <input type="text" id="choice2" value="Walk with him or Walk alone?" style="display:none">
+    <button id="btnSubmit2" onclick="getChoice2();" style="display:none">Continue</button>
+
+    <input type="text" id="choice3" value="Right or Left?" style="display:none">
+    <button id="btnSubmit3" onclick="getChoice3();" style="display:none">Continue</button>
+
+  </body>
+
+</html>
