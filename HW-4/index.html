@@ -24,15 +24,28 @@
     <p>You've come across a fork in the trail. Will you go right or left?</p>
     </div>
 
-    <input type="text" id="choice" value="Right or Left?">
-    <button id="btnSubmit" onclick="getChoice1();">Continue</button>
+    <input type="text" id="rightorleft" value="Right or Left?">
+    <button id="rightorleftbtn" onclick="rightOrLeft();">Continue</button>
 
-    <input type="text" id="choice2" value="Walk with him or Walk alone?" style="display:none">
-    <button id="btnSubmit2" onclick="getChoice2();" style="display:none">Continue</button>
+    <input type="text" id="himoralone" size=25; value="Walk with him or Walk alone?" style="display:none">
+    <button id="himoralonebtn" onclick="himOrAlone();" style="display:none">Continue</button>
 
-    <input type="text" id="choice3" value="Right or Left?" style="display:none">
-    <button id="btnSubmit3" onclick="getChoice3();" style="display:none">Continue</button>
+    <input type="text" id="acceptorsuffer" size=15; value="Accept it or Suffer?" style="display:none">
+    <button id="acceptorsufferbtn" onclick="acceptItOrSuffer();" style="display:none">Continue</button>
 
+    <input type="text" id="continueoralternate" size=35; value="Continue or Find an alternate route?" style="display:none">
+    <button id="continueoralternatebtn" onclick="continueOrAlternate();" style="display:none">Continue</button>
+
+    <input type="text" id="investigateorwait" size=15; value="Investigate or Wait?" style="display:none">
+    <button id="investigateorwaitbtn" onclick="investigateOrWait();" style="display:none">Continue</button>
+
+    <input type="text" id="runorfight" size=15; value="Run or Fight?" style="display:none">
+    <button id="runorfightbtn" onclick="runOrFight();" style="display:none">Continue</button>
+
+    <input type="text" id="crossorturn" size=15; value="Cross or Turn around?" style="display:none">
+    <button id="crossorturnbtn" onclick="crossOrTurn();" style="display:none">Continue</button>
+
+    <button id="restart" onClick="window.location.reload();" style="display:none">Restart</button>
   </body>
 
 </html>
