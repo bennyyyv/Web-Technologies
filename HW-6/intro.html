@@ -14,6 +14,14 @@
     <h1>Memory Matching</h1>
 <!--my js wouldn't work unless I put it in here -->
 <script>
+var imageTags = ["image1", "image2", "image3", "image4", "image5", "image6", "image7", "image8"];
+var blankImagePath = "assets/blank.png";
+var firstNumber = -1;
+var secondNumber = -1;
+var score = 0;
+var allFound = 0;
+var player = {"firstname":"", "lastname":"", "age":0, "score":0};
+var actualImages = new Array();
 function addToPlayer()
 {
     var firstName = document.getElementById("txtFirstName").value;

@@ -5,6 +5,7 @@
         Memory Matching!
     </title>
     <script src="main.js"></script>
+    <!--says Refused to apply style from 'http://127....../Web-Technologies/HW-6/styles/main.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled. -->
     <link rel="stylesheet" type="text/css" src="styles/main.css">
     </link>
 
@@ -60,8 +61,8 @@
   {
 
       console.log(firstNumber);
-      document.getElementById(imageTags[firstNumber]).src = blankImagePath;
-      document.getElementById(imageTags[secondNumber]).src = blankImagePath;
+      document.getElementById(imageTags[firstNumber]).src = "assets/blank.png";
+      document.getElementById(imageTags[secondNumber]).src = "assets/blank.png";
       firstNumber = -1;
       secondNumber = -1;
   }

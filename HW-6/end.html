@@ -2,15 +2,30 @@
 
 <head>
     <title>
-        Memory Matching!
+        Good Work!
     </title>
-    <script src="scripts/main.js"></script>
+    <script src="main.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     </link>
 </head>
 
 <body onload="playerInfo();">
-    <h1>Memory Matching</h1>
+  <script>
+  function playerInfo()
+  {
+      var playerInformation = localStorage.getItem("playerInfo");
+      player = JSON.parse(playerInformation);
+      var str = "Name: " + player.firstname + " " + player.lastname + "<br>" +
+      "Age: " + player.age + "<br>" +
+      "Score: " + player.score;
+      if(document.getElementById("endInformation") != null)
+      {
+          document.getElementById("endInformation").innerHTML = str;
+      }
+  }
+  </script>
+
+      <h1>Good Work!</h1>
 
 
     <div class="divTable">
