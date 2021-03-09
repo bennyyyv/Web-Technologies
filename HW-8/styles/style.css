@@ -1,22 +1,22 @@
-#square {
-     width: 100px;
-     height: 100px;
-     background: red;
-     position: absolute;
-     left: 0;
-     top: 400;
-   }
+body {
+  background-color: salmon;
+}
+#images {
 
-   .stuff{
-     background: blue;
-     color:white;
-   }
+    width: 240px;
+    height: 240px;
+    padding: 10px;
+}
 
-   #third{
-     background: green;
-     color:white;
-   }
+#images > div {
 
-   body{
-       background-color: burlywood;
-   }
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+
+#text {
+background-color: white;
+margin-top: 600px;
+}

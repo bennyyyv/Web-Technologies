@@ -1,58 +1,21 @@
-var dogSelector = "#dog";
-var allDogs = new Array();
-class DogInfo{
-    constructor(selector, imagePath)
-    {
-        this.selector = selector;
-        this.imagePath = imagePath;
-    }
+$("#images > div:gt(0)").hide();
 
-    get theSelector(){
-        return this.selector;
-    }
+setInterval(function() {
+  $('#images > div:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#images');
+},  3000);
 
-    get theImagePath(){
-        return this.imagePath;
-    }
+$("#text > div:gt(0)").hide();
 
-    toString()
-    {
-        return this.selector + ":" + this.imagePath;
-    }
-}
-
-function initializeArray()
-{
-
-    var dog = new DogInfo("#dog", "images/dog.jpg");
-    allDogs.push(dog);
-
-}
-$(document).ready(function(){
-    initializeArray();
-    console.log(allDogs.length);
-    console.log(allDogs[0].toString());
-    console.log(allDogs[0].theSelector);
-    console.log(allDogs[0].theImagePath);
-
-    //$(allDogs[0].theSelector).src = allDogs[0].theImagePath;
-    //$("#my_image").attr("src","second.jpg");
-    $(allDogs[0].theSelector).attr("src", allDogs[0].theImagePath);
-
-    $("button").click(function(){
-
-        $(".stuff").fadeOut();
-
-        $("#third").toggle();
-           setInterval(moveSquare, 1000);
-
-        $(allDogs[0].theSelector).fadeOut().fadeIn();
-
-    });
-
-});
-
-function moveSquare()
-{
-    $("#square").animate({left:250}).animate({top:400}).animate({left:0}).animate({top:300});
-}
+setInterval(function() {
+  $('#text > div:first')
+    .fadeOut(1000)
+    .next(5000)
+    .fadeIn(1000)
+    .end()
+    .appendTo('#text');
+},  3000);
