@@ -19,3 +19,11 @@ setInterval(function() {
     .end()
     .appendTo('#text');
 },  3000);
+
+setInterval(function() {
+    $("#square").animate({left:2385}).animate({top:1185}).animate({left:0}).animate({top:0});
+})
+
+setInterval(function() {
+    $("#square2").animate({left:2395}).animate({top:1195}).animate({left:0}).animate({top:10});
+})
