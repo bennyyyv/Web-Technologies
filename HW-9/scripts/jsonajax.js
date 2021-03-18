@@ -1,17 +1,16 @@
 $(document).ready(function () {
+  
            $("button").click(function () {
-               $("#bikeInformation").load("data/bike.json", function(responseText){
-                   var bike = JSON.parse(responseText);
-                   $("#bikeInformation").html("Manufacturer: " + bike.manufacturer
-               + "<br>Model:" + bike.model + "<br>First Name:" + bike.owner.firstName + "<br>Last Name:"
-               + bike.owner.lastName + "<br>Sizes Available:<br>" +
-               bike.sizes[0] + "<br>" + bike.sizes[1] + "<br>" + bike.sizes[2] + "<br>" + bike.sizes[3]);
+               $("#pokemonInformation").load("data/pokedex.json", function(responseText){
+                   var pokemon = JSON.parse(responseText);
+                   $("#pokemonInformation").html("Id: " + pokemon.id
+                   + "<br>Name: " + pokemon.name + "<br>Type: " + pokemon.type + "<br>Height: "
+                   + pokemon.height + "<br>Weight: " +
+                   pokemon.weight + "<br>Candy: " + pokemon.candy + "<br>Candy Count: " + pokemon.candy_count + "<br>Egg: " + pokemon.egg
+                 + "<br>Spawn Chance: " + pokemon.spawn_chance + "<br>Average Spawns: " + pokemon.avg_spawns + "<br>Spawn Time: " + pokemon.spawn_time +
+               "<br>Weaknesses :" + pokemon.weaknesses);
                });
+
            });
        });
 
-      /* function fadeText()
-       {
-           $("#bikeInformation").fadeOut("slow").fadeIn("slow");
-       }
-       */
