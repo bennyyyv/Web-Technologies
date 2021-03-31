@@ -38,7 +38,7 @@ function setup()
         drawSquare();
     });
 
-object1 = new Objects(0,0,30,30,"FFD700");
+object1 = new Objects(0,0,30,30,"#FFD700");
 
     $.getJSON("data/objects.json", function(data) {
         for(var i = 0; i < data.objects.length; i++)
