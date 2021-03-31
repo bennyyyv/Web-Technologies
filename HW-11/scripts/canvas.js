@@ -75,12 +75,12 @@ function getKey(event)
         moveRight();
         direction = "right";
     }
-    var test = hasCollided(square1,square2);
+    var test = hasCollided(square1,square2,object1);
     var test2 = false;
     for(var i = 0; i < squareArray.length; i++)
     {
 
-        test2 = hasCollided(square1,squareArray[i]);
+        test2 = hasCollided(square1,squareArray[i],object1,objectArray[i]);
         if(test2 == true)
         {
             break;
@@ -91,6 +91,7 @@ function getKey(event)
     if(test || test2)
     {
         lives--;
+        collectables++;
         if(direction == "left")
         {
             moveRight();
