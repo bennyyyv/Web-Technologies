@@ -63,13 +63,14 @@ var config = {
           frameRate: 10,
           repeat: -1
       });
-      //cursors
+      //define cursors
       cursors = this.input.keyboard.createCursorKeys();
       //collide with platforms
       this.physics.add.collider(player, platforms);
     }
-
+//update
     function update ()
+    //player movement
      {
          if (cursors.left.isDown)
          {
