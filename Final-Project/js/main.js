@@ -1,212 +1,95 @@
-var Game      = Game      || {};
-var Keyboard  = Keyboard  || {};
-var Component = Component || {};
-
-//keycodes
-Keyboard.Keymap = {
-  37: 'left',
-  38: 'up',
-  39: 'right',
-  40: 'down'
-};
-//keyboard controls
-Keyboard.ControllerEvents = function() {
-  var self      = this;
-  this.pressKey = null;
-  this.keymap   = Keyboard.Keymap;
-  // Keydown Event
-  document.onkeydown = function(event) {
-    self.pressKey = event.which;
-  };
-  // Get Key
-  this.getKey = function() {
-    return this.keymap[this.pressKey];
-  };
-};
-
-/**
- * Game Component Stage
- */
-Component.Stage = function(canvas, conf) {
-
-  // Sets
-  this.keyEvent  = new Keyboard.ControllerEvents();
-  this.width     = canvas.width;
-  this.height    = canvas.height;
-  this.length    = [];
-  this.food      = {};
-  this.score     = 0;
-  this.direction = 'right';
-  this.conf      = {
-    cw   : 10,
-    size : 5,
-    fps  : 1000
-  };
-
-  // Merge Conf
-  if (typeof conf == 'object') {
-    for (var key in conf) {
-      if (conf.hasOwnProperty(key)) {
-        this.conf[key] = conf[key];
-      }
+var character = document.getElementById("character");
+var game = document.getElementById("game");
+var interval;
+var both = 0;
+var counter = 0;
+var currentBlocks = [];
+//movement functions
+function moveLeft(){
+    var left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+    if(left>0){
+        character.style.left = left - 2 + "px";
     }
-  }
-
-};
-
-/**
- * Game Component Snake
- */
-Component.Snake = function(canvas, conf) {
-
-  // Game Stage
-  this.stage = new Component.Stage(canvas, conf);
-
-  // Init Snake
-  this.initSnake = function() {
-
-    // Itaration in Snake Conf Size
-    for (var i = 0; i < this.stage.conf.size; i++) {
-
-      // Add Snake Cells
-      this.stage.length.push({x: i, y:0});
+}
+function moveRight(){
+    var left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+    if(left<380){
+        character.style.left = left + 2 + "px";
     }
-  };
-
-  // Call init Snake
-  this.initSnake();
-
-  // Init Food
-  this.initFood = function() {
-
-    // Add food on stage
-    this.stage.food = {
-      x: Math.round(Math.random() * (this.stage.width - this.stage.conf.cw) / this.stage.conf.cw),
-      y: Math.round(Math.random() * (this.stage.height - this.stage.conf.cw) / this.stage.conf.cw),
-    };
-  };
-
-  // Init Food
-  this.initFood();
-
-  // Restart Stage
-  this.restart = function() {
-    this.stage.length            = [];
-    this.stage.food              = {};
-    this.stage.score             = 0;
-    this.stage.direction         = 'right';
-    this.stage.keyEvent.pressKey = null;
-    this.initSnake();
-    this.initFood();
-  };
-};
-
-/**
- * Game Draw
- */
-Game.Draw = function(context, snake) {
-
-  // Draw Stage
-  this.drawStage = function() {
-
-    // Check Keypress And Set Stage direction
-    var keyPress = snake.stage.keyEvent.getKey();
-    if (typeof(keyPress) != 'undefined') {
-      snake.stage.direction = keyPress;
+}
+//keys
+document.addEventListener("keydown", event => {
+    if(both==0){
+        both++;
+        if(event.key==="ArrowLeft"){
+            interval = setInterval(moveLeft, 1);
+        }
+        if(event.key==="ArrowRight"){
+            interval = setInterval(moveRight, 1);
+        }
     }
-
-    // Draw White Stage
-    context.fillStyle = "white";
-    context.fillRect(0, 0, snake.stage.width, snake.stage.height);
-
-    // Snake Position
-    var nx = snake.stage.length[0].x;
-    var ny = snake.stage.length[0].y;
-
-    // Add position by stage direction
-    switch (snake.stage.direction) {
-      case 'right':
-        nx++;
-        break;
-      case 'left':
-        nx--;
-        break;
-      case 'up':
-        ny--;
-        break;
-      case 'down':
-        ny++;
-        break;
+});
+document.addEventListener("keyup", event => {
+    clearInterval(interval);
+    both=0;
+});
+//game info
+var blocks = setInterval(function(){
+    var blockLast = document.getElementById("block"+(counter-1));
+    var holeLast = document.getElementById("hole"+(counter-1));
+    if(counter>0){
+        var blockLastTop = parseInt(window.getComputedStyle(blockLast).getPropertyValue("top"));
+        var holeLastTop = parseInt(window.getComputedStyle(holeLast).getPropertyValue("top"));
     }
-
-    // Check Collision
-    if (this.collision(nx, ny) == true) {
-      snake.restart();
-      return;
+    if(blockLastTop<400||counter==0){
+        var block = document.createElement("div");
+        var hole = document.createElement("div");
+        block.setAttribute("class", "block");
+        hole.setAttribute("class", "hole");
+        block.setAttribute("id", "block"+counter);
+        hole.setAttribute("id", "hole"+counter);
+        block.style.top = blockLastTop + 100 + "px";
+        hole.style.top = holeLastTop + 100 + "px";
+        var random = Math.floor(Math.random() * 360);
+        hole.style.left = random + "px";
+        game.appendChild(block);
+        game.appendChild(hole);
+        currentBlocks.push(counter);
+        counter++;
     }
-
-    // Logic of Snake food
-    if (nx == snake.stage.food.x && ny == snake.stage.food.y) {
-      var tail = {x: nx, y: ny};
-      snake.stage.score++;
-      snake.initFood();
-    } else {
-      var tail = snake.stage.length.pop();
-      tail.x   = nx;
-      tail.y   = ny;
+    var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+    var characterLeft = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+    var drop = 0;
+    if(characterTop <= 0){
+        alert("Game over. Score: "+(counter-9));
+        clearInterval(blocks);
+        location.reload();
     }
-    snake.stage.length.unshift(tail);
-
-    // Draw Snake
-    for (var i = 0; i < snake.stage.length.length; i++) {
-      var cell = snake.stage.length[i];
-      this.drawCell(cell.x, cell.y);
+    for(var i = 0; i < currentBlocks.length;i++){
+        let current = currentBlocks[i];
+        let iblock = document.getElementById("block"+current);
+        let ihole = document.getElementById("hole"+current);
+        let iblockTop = parseFloat(window.getComputedStyle(iblock).getPropertyValue("top"));
+        let iholeLeft = parseFloat(window.getComputedStyle(ihole).getPropertyValue("left"));
+        iblock.style.top = iblockTop - 0.5 + "px";
+        ihole.style.top = iblockTop - 0.5 + "px";
+        if(iblockTop < -20){
+            currentBlocks.shift();
+            iblock.remove();
+            ihole.remove();
+        }
+        if(iblockTop-20<characterTop && iblockTop>characterTop){
+            drop++;
+            if(iholeLeft<=characterLeft && iholeLeft+20>=characterLeft){
+                drop = 0;
+            }
+        }
     }
-
-    // Draw Food
-    this.drawCell(snake.stage.food.x, snake.stage.food.y);
-
-    // Draw Score
-    context.fillText('Score: ' + snake.stage.score, 5, (snake.stage.height - 5));
-  };
-
-  // Draw Cell
-  this.drawCell = function(x, y) {
-    context.fillStyle = 'rgb(170, 170, 170)';
-    context.beginPath();
-    context.arc((x * snake.stage.conf.cw + 6), (y * snake.stage.conf.cw + 6), 4, 0, 2*Math.PI, false);
-    context.fill();
-  };
-
-  // Check Collision with walls
-  this.collision = function(nx, ny) {
-    if (nx == -1 || nx == (snake.stage.width / snake.stage.conf.cw) || ny == -1 || ny == (snake.stage.height / snake.stage.conf.cw)) {
-      return true;
+    if(drop==0){
+        if(characterTop < 480){
+            character.style.top = characterTop + 2 + "px";
+        }
+    }else{
+        character.style.top = characterTop - 0.5 + "px";
     }
-    return false;
-  }
-};
-
-
-/**
- * Game Snake
- */
-Game.Snake = function(elementId, conf) {
-
-  // Sets
-  var canvas   = document.getElementById(elementId);
-  var context  = canvas.getContext("2d");
-  var snake    = new Component.Snake(canvas, conf);
-  var gameDraw = new Game.Draw(context, snake);
-
-  // Game Interval
-  setInterval(function() {gameDraw.drawStage();}, snake.stage.conf.fps);
-};
-
-
-/**
- * Window Load
- */
-window.onload = function() {
-  var snake = new Game.Snake('stage', {fps: 100, size: 4});
-};
+},1);
